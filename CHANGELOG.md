@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.0 (unreleased)
+## 0.1.0 (2026-11-06)
 
 First release:
 - `stream`: the server name of a TCP stream's TLS ClientHello (over one or more records),
