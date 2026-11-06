@@ -1,0 +1,25 @@
+[package]
+name = "sni-sniff"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.88"
+license = "MIT OR Apache-2.0"
+description = "Reads the server name of a connection from its first bytes: TLS ClientHello (SNI, ECH), QUIC Initial packets and HTTP Host"
+repository = "https://github.com/nfilament/sni-sniff"
+readme = "README.md"
+keywords = ["sni", "tls", "quic", "clienthello", "sniffing"]
+categories = ["network-programming", "parser-implementations"]
+include = ["src/**", "testdata/**", "README.md", "CHANGELOG.md", "LICENSE-MIT", "LICENSE-APACHE"]
+
+[features]
+# Builders of ClientHellos and QUIC Initial packets, for tests of code using this crate.
+testing = []
+
+[dependencies]
+ring = "0.17"
+
+[dev-dependencies]
+# A real QUIC client's Initial packets, for one test.
+quinn = { version = "0.11", default-features = false, features = ["runtime-tokio", "rustls", "ring"] }
+rustls = { version = "0.23", default-features = false, features = ["ring", "std"] }
+tokio = { version = "1", features = ["rt", "macros"] }
